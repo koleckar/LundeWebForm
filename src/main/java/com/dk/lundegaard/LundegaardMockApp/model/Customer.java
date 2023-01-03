@@ -6,11 +6,12 @@ import java.util.Objects;
 
 @Entity
 public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String Surname;
+    private String surname;
     private Integer policyNumber;
 
 
@@ -20,7 +21,7 @@ public class Customer {
     public Customer(Long id, String name, String surname, Integer policyNumber) {
         this.id = id;
         this.name = name;
-        Surname = surname;
+        this.surname = surname;
         this.policyNumber = policyNumber;
     }
 
@@ -42,11 +43,11 @@ public class Customer {
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public Integer getPolicyNumber() {
@@ -62,25 +63,22 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Customer user = (Customer) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name)
-                && Objects.equals(Surname, user.Surname) && Objects.equals(policyNumber, user.policyNumber);
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(surname, customer.surname) && Objects.equals(policyNumber, customer.policyNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, Surname, policyNumber);
+        return Objects.hash(id, name, surname, policyNumber);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Surname='" + Surname + '\'' +
+                ", surname='" + surname + '\'' +
                 ", policyNumber=" + policyNumber +
                 '}';
     }
-
 }

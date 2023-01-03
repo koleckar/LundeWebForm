@@ -6,11 +6,12 @@ import java.util.Objects;
 
 @Entity
 public class RequestType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String requestType;
+
 
     public RequestType() {
     }
@@ -19,6 +20,7 @@ public class RequestType {
         this.id = id;
         this.requestType = requestType;
     }
+
 
     public Long getId() {
         return id;
@@ -36,6 +38,7 @@ public class RequestType {
         this.requestType = requestType;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +50,14 @@ public class RequestType {
     @Override
     public int hashCode() {
         return Objects.hash(id, requestType);
+    }
+
+    @Override
+    public String toString() {
+        return "RequestType{" +
+                "id=" + id +
+                ", requestType='" + requestType + '\'' +
+                '}';
     }
 
 }

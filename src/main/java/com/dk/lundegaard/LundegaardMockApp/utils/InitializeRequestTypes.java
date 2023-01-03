@@ -1,4 +1,4 @@
-package com.dk.lundegaard.LundegaardMockApp;
+package com.dk.lundegaard.LundegaardMockApp.utils;
 
 import com.dk.lundegaard.LundegaardMockApp.model.RequestType;
 import com.dk.lundegaard.LundegaardMockApp.model.RequestTypeRepository;

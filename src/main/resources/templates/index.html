@@ -23,16 +23,16 @@
         </select>
 
         <label>Policy Number</label>
-        <input type="policy-number" placeholder="Policy Number">
+        <input type="policy-number" placeholder="Policy Number" required pattern=([0-9]){6,}>
 
         <label>Name</label>
-        <input type="name" placeholder="Name">
+        <input type="name" placeholder="Name" required pattern=([A-zÀ-ž]){2,}>
 
         <label>Surname</label>
-        <input type="surname" placeholder="Surname">
+        <input type="surname" placeholder="Surname" required pattern=([A-zÀ-ž]){2,}>
 
         <label>Request</label>
-        <textarea type="request-body" rows=15 placeholder="Your request..">
+        <textarea type="request-body" rows=15 placeholder="Your request.." required pattern={15,500}>
         </textarea>
 
         <button type="submit">Submit Request</button>

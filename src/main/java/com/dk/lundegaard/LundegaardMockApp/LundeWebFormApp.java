@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@EnableTransactionManagement
 public class LundeWebFormApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LundeWebFormApp.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LundeWebFormApp.class, args);
+    }
 
 }
