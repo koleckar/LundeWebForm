@@ -4,22 +4,20 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-//@Entity
-//@Table(name="USER", schema = "LUNDEMOCKAPP")
-public class User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    @Column(name = "id", nullable = false)
+@Entity
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String Surname;
     private Integer policyNumber;
 
 
-    public User() {
+    public Customer() {
     }
 
-    public User(Long id, String name, String surname, Integer policyNumber) {
+    public Customer(Long id, String name, String surname, Integer policyNumber) {
         this.id = id;
         this.name = name;
         Surname = surname;
@@ -65,7 +63,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Customer user = (Customer) o;
         return Objects.equals(id, user.id) && Objects.equals(name, user.name)
                 && Objects.equals(Surname, user.Surname) && Objects.equals(policyNumber, user.policyNumber);
     }

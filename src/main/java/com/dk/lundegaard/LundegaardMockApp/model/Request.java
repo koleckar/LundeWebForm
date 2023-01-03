@@ -1,16 +1,11 @@
 package com.dk.lundegaard.LundegaardMockApp.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 @Entity
-@Table(name="REQUEST", schema = "LUNDEMOCKAPP")
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
     public Long getId() {
@@ -21,7 +16,17 @@ public class Request {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "request_type_id")
     private RequestType requestType;
+
+    public RequestType getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
+    }
 
 
     public Request() {

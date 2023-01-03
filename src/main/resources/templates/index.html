@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,8 +12,15 @@
     <h1>Contact us</h1>
 
     <form class="box-form" action="">
+
         <label>Kind of Request</label>
-        <select name="" id=""></select>
+        <select>
+            <option th:each="request_type: ${request_types}"
+                    th:text="${request_type.requestType}"
+                    th:value="${request_type.id}">
+            </option>
+
+        </select>
 
         <label>Policy Number</label>
         <input type="policy-number" placeholder="Policy Number">
@@ -25,7 +32,8 @@
         <input type="surname" placeholder="Surname">
 
         <label>Request</label>
-        <textarea type="request-body" rows=15 placeholder="Your request.."/>
+        <textarea type="request-body" rows=15 placeholder="Your request..">
+        </textarea>
 
         <button type="submit">Submit Request</button>
     </form>

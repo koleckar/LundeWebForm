@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LundegaardMockAppApplication {
+//@EnableTransactionManagement
+public class LundeWebFormApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LundegaardMockAppApplication.class, args);
+		SpringApplication.run(LundeWebFormApp.class, args);
 	}
 
 }
