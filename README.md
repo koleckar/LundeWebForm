@@ -63,4 +63,6 @@ o    Request field by měl omezovat délku (dle Vaší úvahy, nemusí být 5.00
 ·         Aplikace půjde kompletně sestavit jedním příkazem s využitím libovolného nástroje pro sestavování aplikací (např. gradle, maven, … ).
 
 
-Výběr technologií/frameworků je zcela na vás, jediný limit je Java backend. Předání kódu taktéž, ať už půjde o publikaci do repositáře, či předání „po staru“ v nějakém zip archivu. Kdyby něco z toho nebylo jasné, tak klidně dejte vědět, zavolejte nebo napište na tento email.
+Výběr technologií/frameworků je zcela na vás, jediný limit je Java backend. Předání kódu taktéž, ať už půjde o publikaci do repositáře, či předání „po staru“ v nějakém zip archivu.
+
+Čas na vypracování 1MD.
