@@ -36,7 +36,7 @@
         <input type="text" placeholder="Surname" required th:field="*{surname}">
         <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="validation_errors"/>
 
-        <label>Request</label>
+        <label>Your Request</label>
         <textarea type="text" rows=15 placeholder="Your request.." required th:field="*{requestMessage}">
         </textarea>
         <div th:if="${#fields.hasErrors('requestMessage')}" th:errors="*{requestMessage}" class="validation_errors"/>

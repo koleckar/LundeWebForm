@@ -40,6 +40,7 @@ public class RequestPageController {
                                 BindingResult bindingResult, Model model) {
         System.err.println("POST");
         System.out.println(request);
+        model.addAttribute("request_types", requestTypeRepository.findAll());
         if (bindingResult.hasErrors()) {
             System.err.println("binding has errs");
             return "index";

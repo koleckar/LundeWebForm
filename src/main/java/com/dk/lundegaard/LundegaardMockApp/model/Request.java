@@ -15,8 +15,10 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "request_type_id")
     @NotNull
-    private String requestType;
+    private RequestType requestType;
     @NotNull
     @Size(min = POLICY_NUMBER_LEN, max = POLICY_NUMBER_LEN,
             message = "Policy Number must be " + POLICY_NUMBER_LEN + " characters long.")
@@ -42,7 +44,7 @@ public class Request {
     public Request() {
     }
 
-    public Request(Long id, String requestType, String name, String surname, String policyNumber, String requestMessage) {
+    public Request(Long id, RequestType requestType, String name, String surname, String policyNumber, String requestMessage) {
         this.id = id;
         this.requestType = requestType;
         this.name = name;
@@ -60,11 +62,11 @@ public class Request {
         this.id = id;
     }
 
-    public String getRequestType() {
+    public RequestType getRequestType() {
         return requestType;
     }
 
-    public void setRequestType(String requestType) {
+    public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
     }
 
