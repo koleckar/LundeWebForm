@@ -8,14 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
-@RequestMapping("/")
 public class RequestPageController {
+
     private final RequestTypeRepository requestTypeRepository;
     private final RequestRepository requestRepository;
+
 
     public RequestPageController(RequestTypeRepository requestTypeRepository,
                                  RequestRepository requestRepository) {
@@ -24,19 +26,29 @@ public class RequestPageController {
         this.requestRepository = requestRepository;
     }
 
-    @GetMapping
-    public String retrieveAllRequestTypes(Model model) {
+
+    @GetMapping("/")
+    public String initializeRequestPage(Model model) {
+        System.err.println("GET");
+        model.addAttribute("request", new Request());
         model.addAttribute("request_types", requestTypeRepository.findAll());
         return "index";
     }
 
-    @PostMapping
-    public String submitRequest(@Valid Request request, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) return "index";
+    @PostMapping("/")
+    public String submitRequest(@Valid @ModelAttribute("request") Request request,
+                                BindingResult bindingResult, Model model) {
+        System.err.println("POST");
+        System.out.println(request);
+        if (bindingResult.hasErrors()) {
+            System.err.println("binding has errs");
+            return "index";
+        }
 
         requestRepository.save(request);
-        return "index"; // TODO: return succesfull message - or display new view with submited info.
+        return "index";
     }
+
 }
 
 

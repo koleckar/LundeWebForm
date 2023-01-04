@@ -12,10 +12,10 @@
     <h1>Contact us</h1>
 
     <form class="box-form"
-          method="post" action="#" th:action="@{/request/submitted}" th:object="${request}" >
+          method="post" action="#" th:action="@{/}" th:object="${request}">
 
         <label>Kind of Request</label>
-        <select>
+        <select th:field="*{requestType}">
             <option th:each="request_type: ${request_types}"
                     th:text="${request_type.requestType}"
                     th:value="${request_type.id}">
@@ -24,17 +24,22 @@
         </select>
 
         <label>Policy Number</label>
-        <input type="text" placeholder="Policy Number" pattern=([A-zÀ-ž]+){6,} required>
+        <input type="text" placeholder="Policy Number"  required
+               th:field="*{policyNumber}">
+        <div th:if="${#fields.hasErrors('policyNumber')}" th:errors="*{policyNumber}" class="validation_errors"/>
 
         <label>Name</label>
-        <input type="text" placeholder="Name" pattern=([A-zÀ-ž]+){2,} required>
+        <input type="text" placeholder="Name" required th:field="*{name}" >
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation_errors"/>
 
         <label>Surname</label>
-        <input type="text" placeholder="Surname" pattern=([A-zÀ-ž]+){2,} required>
+        <input type="text" placeholder="Surname" required th:field="*{surname}">
+        <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="validation_errors"/>
 
         <label>Request</label>
-        <textarea type="text" rows=15 placeholder="Your request.." pattern={15,500} required>
+        <textarea type="text" rows=15 placeholder="Your request.." required th:field="*{requestMessage}">
         </textarea>
+        <div th:if="${#fields.hasErrors('requestMessage')}" th:errors="*{requestMessage}" class="validation_errors"/>
 
         <button type="submit">Submit Request</button>
     </form>

@@ -1,8 +1,7 @@
 package com.dk.lundegaard.LundegaardMockApp.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.*;
 
 import java.util.Objects;
 
@@ -15,24 +14,40 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "request_type_id")
-    private RequestType requestType;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-    @Min(MIN_REQUEST_MESSAGE_LEN)
-    @Max(MAX_REQUEST_MESSAGE_LEN)
+
+    @NotNull
+    private String requestType;
+    @NotNull
+    @Size(min = POLICY_NUMBER_LEN, max = POLICY_NUMBER_LEN,
+            message = "Policy Number must be " + POLICY_NUMBER_LEN + " characters long.")
+    @Pattern(regexp = "^\\p{Alnum}+$", message = "Only alphanumeric characters allowed.")
+    private String policyNumber;
+    @NotNull
+    @Size(min = MIN_NAME_LEN, max = MAX_NAME_LEN,
+            message = "Name must be between " + MIN_NAME_LEN + " and " + MAX_NAME_LEN + " characters.")
+    @Pattern(regexp = "^\\p{Alpha}+$",  message = "Only alpha (non-numeric) characters allowed.")
+    private String name;
+    @NotNull
+    @Size(min = MIN_SURNAME_LEN, max = MAX_SURNAME_LEN,
+            message = "Surname must be between " + MIN_SURNAME_LEN + " and " + MAX_SURNAME_LEN + " characters.")
+    @Pattern(regexp = "^\\p{Alpha}+$",  message = "Only alpha (non-numeric) characters allowed.")
+    private String surname;
+
+    @NotNull
+    @Size(min = MIN_REQUEST_MESSAGE_LEN, max = MAX_REQUEST_MESSAGE_LEN,
+            message = "Text must be between " + MIN_REQUEST_MESSAGE_LEN + " and " + MAX_REQUEST_MESSAGE_LEN + " characters.")
     private String requestMessage;
 
 
     public Request() {
     }
 
-    public Request(Long id, RequestType requestType, Customer customer, String requestMessage) {
+    public Request(Long id, String requestType, String name, String surname, String policyNumber, String requestMessage) {
         this.id = id;
         this.requestType = requestType;
-        this.customer = customer;
+        this.name = name;
+        this.surname = surname;
+        this.policyNumber = policyNumber;
         this.requestMessage = requestMessage;
     }
 
@@ -45,20 +60,36 @@ public class Request {
         this.id = id;
     }
 
-    public RequestType getRequestType() {
+    public String getRequestType() {
         return requestType;
     }
 
-    public void setRequestType(RequestType requestType) {
+    public void setRequestType(String requestType) {
         this.requestType = requestType;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getPolicyNumber() {
+        return policyNumber;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPolicyNumber(String policyNumber) {
+        this.policyNumber = policyNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getRequestMessage() {
@@ -75,21 +106,29 @@ public class Request {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return Objects.equals(id, request.id) && Objects.equals(requestType, request.requestType) && Objects.equals(customer, request.customer) && Objects.equals(requestMessage, request.requestMessage);
+        return Objects.equals(id, request.id)
+                && Objects.equals(requestType, request.requestType)
+                && Objects.equals(name, request.name)
+                && Objects.equals(surname, request.surname)
+                && Objects.equals(policyNumber, request.policyNumber)
+                && Objects.equals(requestMessage, request.requestMessage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, requestType, customer, requestMessage);
+        return Objects.hash(id, requestType, name, surname, policyNumber, requestMessage);
     }
 
     @Override
     public String toString() {
         return "Request{" +
                 "id=" + id +
-                ", requestType=" + requestType +
-                ", customer=" + customer +
+                ", requestType='" + requestType + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", policyNumber='" + policyNumber + '\'' +
                 ", requestMessage='" + requestMessage + '\'' +
                 '}';
     }
+
 }

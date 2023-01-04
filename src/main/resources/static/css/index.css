@@ -58,3 +58,11 @@ body {
    border: 2px solid #25c0b9;
 }
 
+.validation_errors{
+    margin-top: 5;
+    margin-bottom:15;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #D63301;
+    background-color: #FFCCBA;
+}
