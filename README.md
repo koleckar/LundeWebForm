@@ -6,28 +6,25 @@
     <img src="/images/WebFormSnippet.png" width="800px"</img> 
 </div>
 App Snippet 
-<br>
+<br><br>
 Uppon startup RequestTypes are put into the h2 database. 
+<br>
 Upon GET request to the main page, the dropdownlist is populated.
+<br>
 Request server-side validated.
 
 ---------------------------
-<br>
-<br>
+
 App is running at http://localhost:8080
-<br>
+
 H2 console at http://localhost:8080/h2-console    
- <br>
- <br>
 Driver Class: org.h2.Driver  
-<br>
 JDBC URL: jdbc:h2:mem:requestsDB  
-<br>
 User Name: dk  
-<br>
 Password: password 
-<br>
+
 ---------------------------
+
 <br>
 <br>
 <br>
@@ -39,6 +36,9 @@ SQL schema
 <br>
 
 <h3>issues/TODOs</h3>
-WebForm not displaying succes message on succesfull submit, also after the submit the fields are not reloaded to blank fields.
-JUnit tests not completed.
-Documentation not completed.
+WebForm not displaying success message on successfull submit, also after the submit the fields are not reloaded to blank fields.<br>
+JUnit tests not completed.<br>
+Documentation not completed.<br>
+In-memory db used for simplicity, use eg. PostgreSQL.<br>
+Instead of SpringMVC use WebFlux.<br>
+Add Kafka for handling backpressure.
