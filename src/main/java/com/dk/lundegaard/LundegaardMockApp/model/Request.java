@@ -1,8 +1,13 @@
 package com.dk.lundegaard.LundegaardMockApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import java.util.Objects;
+
+import static com.dk.lundegaard.LundegaardMockApp.utils.Constants.*;
+
 
 @Entity
 public class Request {
@@ -16,6 +21,8 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+    @Min(MIN_REQUEST_MESSAGE_LEN)
+    @Max(MAX_REQUEST_MESSAGE_LEN)
     private String requestMessage;
 
 

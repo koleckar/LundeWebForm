@@ -11,7 +11,8 @@
 
     <h1>Contact us</h1>
 
-    <form class="box-form" action="">
+    <form class="box-form"
+          method="post" action="#" th:action="@{/request/submitted}" th:object="${request}" >
 
         <label>Kind of Request</label>
         <select>
@@ -23,16 +24,16 @@
         </select>
 
         <label>Policy Number</label>
-        <input type="policy-number" placeholder="Policy Number" required pattern=([0-9]){6,}>
+        <input type="text" placeholder="Policy Number" pattern=([A-zÀ-ž]+){6,} required>
 
         <label>Name</label>
-        <input type="name" placeholder="Name" required pattern=([A-zÀ-ž]){2,}>
+        <input type="text" placeholder="Name" pattern=([A-zÀ-ž]+){2,} required>
 
         <label>Surname</label>
-        <input type="surname" placeholder="Surname" required pattern=([A-zÀ-ž]){2,}>
+        <input type="text" placeholder="Surname" pattern=([A-zÀ-ž]+){2,} required>
 
         <label>Request</label>
-        <textarea type="request-body" rows=15 placeholder="Your request.." required pattern={15,500}>
+        <textarea type="text" rows=15 placeholder="Your request.." pattern={15,500} required>
         </textarea>
 
         <button type="submit">Submit Request</button>

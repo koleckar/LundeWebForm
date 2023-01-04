@@ -1,24 +1,37 @@
 package com.dk.lundegaard.LundegaardMockApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.Objects;
+import static com.dk.lundegaard.LundegaardMockApp.utils.Constants.*;
 
 @Entity
 public class Customer {
+    //TODO: migrate this class to Request
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
+    @Min(MIN_NAME_LEN)
+    @Pattern(regexp = "^\\p{Alpha}+$")
     private String name;
+    @NotNull
+    @Min(MIN_SURNAME_LEN)
+    @Pattern(regexp = "^\\p{Alpha}+$")
     private String surname;
-    private Integer policyNumber;
+    @NotNull
+    @Min(POLICY_NUMBER_LEN)
+    @Max(POLICY_NUMBER_LEN)
+    @Pattern(regexp = "^\\p{Alnum}+$")
+    private String policyNumber; //TODO: make string
 
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String surname, Integer policyNumber) {
+    public Customer(Long id, String name, String surname, String policyNumber) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -50,11 +63,11 @@ public class Customer {
         this.surname = surname;
     }
 
-    public Integer getPolicyNumber() {
+    public String getPolicyNumber() {
         return policyNumber;
     }
 
-    public void setPolicyNumber(Integer policyNumber) {
+    public void setPolicyNumber(String policyNumber) {
         this.policyNumber = policyNumber;
     }
 
@@ -64,7 +77,8 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(surname, customer.surname) && Objects.equals(policyNumber, customer.policyNumber);
+        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name)
+                && Objects.equals(surname, customer.surname) && Objects.equals(policyNumber, customer.policyNumber);
     }
 
     @Override
